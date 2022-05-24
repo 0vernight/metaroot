@@ -15,6 +15,12 @@ import java.util.List;
  * @Author: 23236
  * @createTime: 2022/5/24   21:45
  * @description: 不同的表之间的查询
+ *
+ * preparestatement 好处如下：
+ * 1.能避免SQL注入问题
+ * 2.可以操作Blob数据类型
+ * 3.可以实现更高效的的批量操作。（比起statement只需要校验一次）
+ *
  **/
 public class PrepareStatementQueryTest {
 
@@ -33,6 +39,9 @@ public class PrepareStatementQueryTest {
                 +" student_address address from student where student_id<?";
         ts = queryList(Student.class,sql, 5);
         System.out.println(ts);
+
+        //lamda
+        ts.forEach(System.out::println);
 
     }
 
