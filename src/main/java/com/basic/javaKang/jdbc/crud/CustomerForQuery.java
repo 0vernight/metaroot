@@ -19,8 +19,8 @@ public class CustomerForQuery {
     @Test
     public void queryCustomerTest(){
         String sql = "select first_name firstName ,last_name lastName,customer_id customerId, "
-        +" age,email ,address_id addressId from customer where customer_id=?";
-        List<Customer> customers = queryCustomer(sql, 2);
+        +" age,email ,address_id addressId from customer where customer_id<?";
+        List<Customer> customers = queryCustomer(sql, 4);
         System.out.println(customers);
     }
 
@@ -102,7 +102,7 @@ public class CustomerForQuery {
             //1.connect db
             connection = JDBCUtils.getConnection();
             //2.prepare sql return preparestatement
-            String sql = "select first_name,last_name,email from customer where customer_id=?";
+            String sql = "select first_name firstName,last_name lastNmae,email from customer where customer_id=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, 24);
             //3.execute & return result

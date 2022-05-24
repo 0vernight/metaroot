@@ -1,4 +1,4 @@
-package com.basic;
+package com.basic.letcode;
 
 /**
  * @Author: 23236

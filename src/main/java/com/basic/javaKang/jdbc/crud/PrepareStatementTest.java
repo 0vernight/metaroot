@@ -17,6 +17,7 @@ import java.util.Properties;
  **/
 public class PrepareStatementTest {
 
+
     @Test
     public void testCommonTest(){
         String sql="insert into customer (first_name,last_name,email,address_id) values(?,?,?,?)";

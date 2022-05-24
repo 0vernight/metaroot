@@ -1,14 +1,21 @@
 package com.basic.javaKang.bean;
 
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
  * @Author: 23236
  * @createTime: 2022/3/8   21:46
  * @description: 对应数据库当中的customer类
+ *
+ * lombok 可以学一学跟着mybatis
+ *
  **/
 
+@Data
 public class Customer<T> extends Person<T> implements Serializable {
     public static final long serialVersionUID = 42544573757L;//每个序列化的类必须给出序列化的版本
     T type;
@@ -22,8 +29,8 @@ public class Customer<T> extends Person<T> implements Serializable {
     public int addressId;
     public int address;
     public String password;
-    public String createDate;
-    public String lastDate;
+    public Date createDate;
+    public Date lastDate;
 
     public Customer() {
     }
