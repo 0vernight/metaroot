@@ -62,7 +62,7 @@ public class PrepareStatementQueryTest {
 //            sql = "select first_name,last_name,email from customer where customer_id=?";
             preparedStatement = connection.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
-                preparedStatement.setObject(1, args[i]);
+                preparedStatement.setObject(i+1, args[i]);
 
             }
             //3.execute & return result

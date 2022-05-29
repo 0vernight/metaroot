@@ -11,6 +11,8 @@ public class User<T> extends Person<T>{
     public T type;
     private String name ;
     private int age ;
+    private String password;
+    private String img;
     private String email;
     private String address;
 
