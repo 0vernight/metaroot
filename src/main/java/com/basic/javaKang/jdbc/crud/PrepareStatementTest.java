@@ -40,6 +40,10 @@ public class PrepareStatementTest {
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //5.closeResource
             JDBCUtils.closeResource(connection,preparedStatement);
@@ -139,7 +143,11 @@ public class PrepareStatementTest {
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }finally {
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
             //5.关闭资源
             JDBCUtils.closeResource(connection,preparedStatement);
         }

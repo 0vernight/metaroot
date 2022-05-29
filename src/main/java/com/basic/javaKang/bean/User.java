@@ -20,6 +20,11 @@ public class User<T> extends Person<T>{
         this.name = "name=deafult";
         this.age = 18;
     }
+    public User(String name, int age, String address) {
+        this.name = name;
+        this.age = age;
+        this.address=address;
+    }
     private User(String name) {
         this.name = name;
         this.age = 18;

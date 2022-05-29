@@ -11,36 +11,30 @@ import java.util.Properties;
  **/
 public class JDBCUtils {
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException, ClassNotFoundException, IOException {
 //        System.out.println("连接数据库begin");
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        try {
-            //1.读取配置文件的信息
-            //InputStream resourceAsStream = JDBC.class.getClassLoader().getResourceAsStream("jdbc.properties");//加载器当中的系统加载器
-            InputStream  resourceAsStream= ClassLoader.getSystemClassLoader().getResourceAsStream("jdbc.properties");//也跟上面的一样
-            Properties properties = new Properties();
-            properties.load(resourceAsStream);
-            String user = properties.getProperty("user");
-            String password = properties.getProperty("password");
-            String url = properties.getProperty("url");
-            String driverClass = properties.getProperty("driverClass");
 
-            //2.记载驱动
-            Class.forName(driverClass);
+        //1.读取配置文件的信息
+        //InputStream resourceAsStream = JDBC.class.getClassLoader().getResourceAsStream("jdbc.properties");//加载器当中的系统加载器
+        InputStream resourceAsStream = ClassLoader.getSystemClassLoader().getResourceAsStream("jdbc.properties");//也跟上面的一样
+        Properties properties = new Properties();
+        properties.load(resourceAsStream);
+        String user = properties.getProperty("user");
+        String password = properties.getProperty("password");
+        String url = properties.getProperty("url");
+        String driverClass = properties.getProperty("driverClass");
 
-            //3.获取链接
-            connection = DriverManager.getConnection(url, user, password);
+        //2.记载驱动
+        Class.forName(driverClass);
 
-            System.out.println("链接成功结束=" + connection);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        //3.获取链接
+        connection = DriverManager.getConnection(url, user, password);
+
+        System.out.println("链接成功结束=" + connection);
+
         return connection;
     }
 

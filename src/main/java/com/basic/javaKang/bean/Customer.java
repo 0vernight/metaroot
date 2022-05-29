@@ -27,7 +27,7 @@ public class Customer<T> extends Person<T> implements Serializable {
     public int age ;
     public String email;
     public int addressId;
-    public int address;
+    public String address;
     public String password;
     public Date createDate;
     public Date lastDate;
@@ -48,6 +48,14 @@ public class Customer<T> extends Person<T> implements Serializable {
         this.age = age;
         this.email = email;
     }
+    public Customer( String firstName, String lastName, int age, String email,String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.address=address;
+    }
+
 
     @Override
     public String toString() {

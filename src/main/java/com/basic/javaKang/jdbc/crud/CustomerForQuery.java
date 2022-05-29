@@ -3,6 +3,8 @@ package com.basic.javaKang.jdbc.crud;
 import com.basic.javaKang.bean.Customer;
 import com.basic.javaKang.bean.Person;
 import org.junit.Test;
+
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,6 +86,10 @@ public class CustomerForQuery {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //close resources
             //5.closeResource
@@ -118,6 +124,10 @@ public class CustomerForQuery {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             //close resources
             //5.closeResource
