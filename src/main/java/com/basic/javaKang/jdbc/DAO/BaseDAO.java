@@ -1,10 +1,12 @@
 package com.basic.javaKang.jdbc.DAO;
 
-import com.basic.javaKang.jdbc.crud.JDBCUtils;
+import com.basic.javaKang.jdbc.utils.JDBCUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +23,20 @@ import java.util.List;
 //本类不会去创建他的对象的，只是提供通用的方法的的类
     //所以虽然没有抽象方法但是还是定义为抽象类
     //后续具体的表提供具体的dao
-public abstract class BaseDAO {
+public abstract class BaseDAO<T> {
 
+    private Class<T> clazz=null;
+
+//    public BaseDAO(){
+//        clazz=
+//    }
+
+    {
+        Type genericSuperclass = this.getClass().getGenericSuperclass();
+        ParameterizedType parameterizedType= (ParameterizedType) genericSuperclass;
+        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();//获取了父类 的泛型参数
+        clazz = (Class<T>) actualTypeArguments[0];
+    }
     //链接也是一个事务，
     public int update(Connection conn,String sql,Object... args){
         PreparedStatement ps=null;
@@ -41,7 +55,7 @@ public abstract class BaseDAO {
         }
     }
 
-    public  <T> List<T> queryList(Connection connection,Class <T> clazz, String sql, Object... args) {
+    public  <T> List<T> queryList(Connection connection,Class <T> claz, String sql, Object... args) {
 
         ArrayList<T> types = null;
 //        Connection connection = null;
@@ -69,7 +83,7 @@ public abstract class BaseDAO {
             while (resultSet.next()) {
                 //Customer<Person> cust = new Customer<>();
                 //不确定是那个表的，用泛型
-                T t=clazz.getDeclaredConstructor().newInstance();
+                T t= (T) clazz.getDeclaredConstructor().newInstance();
                 //处理结果集当中的每一行数据
                 for (int i = 0; i < columnCount; i++) {
                     //获取某一列的值

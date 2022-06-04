@@ -12,7 +12,17 @@ import java.util.List;
  * @createTime: 2022/5/29   22:26
  * @description: customer 类的实现类
  **/
-public class CustomerImpl extends BaseDAO implements CustomerDAO {
+public class CustomerImpl extends BaseDAO<Customer> implements CustomerDAO {
+//    private CustomerImpl(){
+//
+//    }
+
+//    {
+//        Type genericSuperclass = this.getClass().getGenericSuperclass();
+//        ParameterizedType parameterizedType= (ParameterizedType) genericSuperclass;
+//        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();//获取了父类 的泛型参数
+//        Type clazz = actualTypeArguments[0];
+//    }
     @Override
     public void insert(Connection connection, Customer customer) {
 
@@ -30,9 +40,9 @@ public class CustomerImpl extends BaseDAO implements CustomerDAO {
 
     @Override
     public int updateById(Connection connection, Customer customer) {
-        String sql="update customer set first_name=?,last_name=?,email=?,address_id=?";
+        String sql="update customer set first_name=?,last_name=?,email=?,customer_id=?";
 
-        return update(connection,sql,customer.firstName,customer.lastName,customer.email,customer.addressId);
+        return update(connection,sql,customer.firstName,customer.lastName,customer.email,customer.customerId);
     }
 
     @Override
@@ -45,7 +55,7 @@ public class CustomerImpl extends BaseDAO implements CustomerDAO {
 
     @Override
     public List<Customer> getAll(Connection connection) {
-        String sql="select  first_name firstName,last_name lastName,email,address_id addressId from customer where customer_id=?";
+        String sql="select  first_name firstName,last_name lastName,email,address_id addressId from customer ";
 
         return queryList(connection,Customer.class,sql);
     }

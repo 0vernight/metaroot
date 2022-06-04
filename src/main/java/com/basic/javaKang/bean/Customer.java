@@ -48,6 +48,13 @@ public class Customer<T> extends Person<T> implements Serializable {
         this.age = age;
         this.email = email;
     }
+    public Customer( int customerId,String firstName, String lastName, int age, String email) {
+        this.customerId=customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+    }
     public Customer( String firstName, String lastName, int age, String email,String address) {
         this.firstName = firstName;
         this.lastName = lastName;
