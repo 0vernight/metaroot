@@ -1,7 +1,7 @@
 package com.basic.javaKang.jdbc.DAO.junit;
 
 import com.basic.javaKang.bean.Customer;
-import com.basic.javaKang.jdbc.Impl.CustomerImpl;
+import com.basic.javaKang.jdbc.DAO.Impl.CustomerImpl;
 import com.basic.javaKang.jdbc.utils.JDBCUtils;
 import org.junit.jupiter.api.Test;
 

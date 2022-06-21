@@ -1,4 +1,4 @@
-package com.basic.javaKang.jdbc.Impl;
+package com.basic.javaKang.jdbc.DAO.Impl;
 
 import com.basic.javaKang.bean.Customer;
 import com.basic.javaKang.jdbc.DAO.BaseDAO;
